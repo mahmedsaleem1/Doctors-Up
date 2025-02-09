@@ -1,0 +1,355 @@
+<html>
+ <head>
+  <title>
+   HealthConnect
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <header class="bg-white shadow">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+     <img alt="HealthConnect Logo" class="h-10 w-10" height="40" src="https://storage.googleapis.com/a1aa/image/3Jp4pw6D-XbIqdT6YMd2yNLGxa-UfS_q-N-f5RliiVU.jpg" width="40"/>
+     <span class="ml-2 text-xl font-bold text-green-600">
+      HealthConnect
+     </span>
+    </div>
+    <nav class="flex space-x-4">
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Home
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Search Doctors
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Order Medicine
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Disease Diagnoser
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Hospitals
+     </a>
+    </nav>
+    <div class="flex space-x-4">
+     <button class="bg-green-100 text-green-600 px-4 py-2 rounded">
+      Sign Up
+     </button>
+     <button class="bg-green-600 text-white px-4 py-2 rounded">
+      Login
+     </button>
+    </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+   <section class="bg-white p-6 rounded shadow mb-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Doctor Information
+    </h2>
+    <div class="flex items-center mb-4">
+     <img alt="Doctor's Image" class="h-24 w-24 rounded-full mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/pHIvz4-YVLLUs45ikg1DhERr6JJ0qXMNWcGoouXOIls.jpg" width="100"/>
+     <div>
+      <h3 class="text-xl font-bold">
+       Dr. John Doe
+      </h3>
+      <p>
+       Dr. John Doe is a renowned cardiologist with over 20 years of experience in treating heart diseases. He specializes in advanced heart failure management and cardiac imaging.
+      </p>
+     </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+     <div>
+      <h4 class="font-bold">
+       Education &amp; Certifications
+      </h4>
+      <p>
+       MD, Cardiology - Harvard Medical School
+      </p>
+      <p>
+       Board Certified in Cardiovascular Disease
+      </p>
+      <p>
+       Fellow, American College of Cardiology
+      </p>
+     </div>
+     <div>
+      <p>
+       <strong>
+        Experience:
+       </strong>
+       15 years
+      </p>
+      <p>
+       <strong>
+        Location:
+       </strong>
+       Jinnah Avenue
+      </p>
+      <p>
+       <strong>
+        Reviews:
+       </strong>
+       50 Reviews
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded shadow mb-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Get Confirmed Appointment Online
+    </h2>
+    <div class="bg-gray-100 p-4 rounded">
+     <div class="mb-4">
+      <label class="block text-gray-700">
+       Select Hospital/Clinic
+      </label>
+      <select class="w-full p-2 border rounded">
+       <option>
+        Video Consultation
+       </option>
+       <option>
+        Ahsan Hospital
+       </option>
+       <option>
+        Quetta City
+       </option>
+      </select>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700">
+       Select Date &amp; Time
+      </label>
+      <div class="flex space-x-2">
+       <input class="w-1/2 p-2 border rounded" type="date"/>
+       <input class="w-1/2 p-2 border rounded" type="time"/>
+      </div>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700">
+       Patient Name
+      </label>
+      <input class="w-full p-2 border rounded" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700">
+       Promo Code
+      </label>
+      <input class="w-full p-2 border rounded" type="text"/>
+     </div>
+     <button class="bg-green-600 text-white w-full p-2 rounded">
+      Book Video Consultation
+     </button>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded shadow mb-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Patient Reviews
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="Anna Smith" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/duhFZ-tY9I5T1FRsDnqZg5TUVmtNxAqhMs49KP9rUu0.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         Anna Smith
+        </h4>
+        <p class="text-sm text-gray-600">
+         5 days ago
+        </p>
+       </div>
+      </div>
+      <p>
+       Dr. Brown is amazing! Her approach is warm and caring.
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="John Doe" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/qZ8E5gqLjRxYLROx8HelTot-mQYWuwUlMQn76OwIW7Q.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         John Doe
+        </h4>
+        <p class="text-sm text-gray-600">
+         2 weeks ago
+        </p>
+       </div>
+      </div>
+      <p>
+       I felt at ease during my consultation. Highly recommend.
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="Emily Davis" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/mx_ICaSV72CtsHnriF2KfLv8hntN2qOcRNKM2kXDWxs.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         Emily Davis
+        </h4>
+        <p class="text-sm text-gray-600">
+         1 month ago
+        </p>
+       </div>
+      </div>
+      <p>
+       Very professional and attentive. Great experience.
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="Michael Lee" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/dDSx_Q7zSPFISS13PZdOFyA1JQRVK5a9j7-otLw5y1E.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         Michael Lee
+        </h4>
+        <p class="text-sm text-gray-600">
+         3 weeks ago
+        </p>
+       </div>
+      </div>
+      <p>
+       The staff and doctor were kind and efficient.
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="Sarah Johnson" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/OUi2r55XDbZuTMQnpSPJzcNEFy1AGkjdl7NNok0bwko.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         Sarah Johnson
+        </h4>
+        <p class="text-sm text-gray-600">
+         2 days ago
+        </p>
+       </div>
+      </div>
+      <p>
+       Quick service and detailed care. Very satisfied.
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+     <div class="bg-gray-100 p-4 rounded shadow">
+      <div class="flex items-center mb-2">
+       <img alt="David Miller" class="h-10 w-10 rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/0-Y2sSgrOKTwtRQl0U-Mq2LUrfSvJ7h951jiGt_aOH0.jpg" width="40"/>
+       <div>
+        <h4 class="font-bold">
+         David Miller
+        </h4>
+        <p class="text-sm text-gray-600">
+         1 month ago
+        </p>
+       </div>
+      </div>
+      <p>
+       The best doctor visit I've had in years!
+      </p>
+      <div class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded shadow mb-8">
+    <div class="flex flex-col md:flex-row items-center">
+     <div class="md:w-1/2 p-4">
+      <h2 class="text-2xl font-bold mb-4">
+       Book Your Appointment Today
+      </h2>
+      <p class="mb-4">
+       Explore our range of healthcare services, check our consultation fees, and schedule your appointment with ease. Click below to book or chat with us for more information.
+      </p>
+      <button class="bg-green-600 text-white px-4 py-2 rounded">
+       Book Clinic Visit
+      </button>
+     </div>
+     <div class="md:w-1/2 p-4">
+      <img alt="City map with a location pin" class="rounded" height="400" src="https://storage.googleapis.com/a1aa/image/bxDj2PSunVDGJIlZ8ncWhD0w9hmzpX-i8dKzFepeu2U.jpg" width="600"/>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-white p-4 text-center">
+   <p class="text-gray-600">
+    Made with
+    <i class="fas fa-heart text-red-500">
+    </i>
+    by Ysiily
+   </p>
+  </footer>
+ </body>
+</html>

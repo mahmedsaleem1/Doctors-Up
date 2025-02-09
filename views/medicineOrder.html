@@ -1,0 +1,166 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   HealthConnect - Order Medicine
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-50">
+  <header class="bg-white shadow-sm">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+     <img alt="HealthConnect Logo" class="h-10 w-10" height="40" src="https://storage.googleapis.com/a1aa/image/FeREed65qVfJG3PLeOviwLFv6k8JwrHoFZkcbCuDpyw.jpg" width="40"/>
+     <h1 class="text-2xl font-bold ml-2">
+      HealthConnect
+     </h1>
+    </div>
+    <nav class="flex space-x-4">
+     <a class="text-gray-700 hover:text-green-500" href="#">
+      Home
+     </a>
+     <a class="text-gray-700 hover:text-green-500" href="#">
+      Search Doctors
+     </a>
+     <a class="text-gray-700 hover:text-green-500 border-b-2 border-green-500" href="#">
+      Order Medicine
+     </a>
+     <a class="text-gray-700 hover:text-green-500" href="#">
+      Disease Diagnoser
+     </a>
+     <a class="text-gray-700 hover:text-green-500" href="#">
+      Hospitals
+     </a>
+    </nav>
+    <div class="flex items-center space-x-4">
+     <i class="fas fa-bell text-gray-700">
+     </i>
+     <img alt="User Profile Picture" class="h-10 w-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/DHKW2eBxXEb1pSVjor9S7BUKmfUHSyMic9ECQVfQB1w.jpg" width="40"/>
+    </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+   <h2 class="text-2xl font-bold mb-4">
+    Medicine Order Form
+   </h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="medicine-name">
+       Medicine Name
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2" id="medicine-name" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="patient-name">
+       Patient Name
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2" id="patient-name" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="payment-details">
+       Payment Details
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2" id="payment-details" type="text"/>
+     </div>
+     <div class="flex space-x-4 mb-8">
+      <button class="bg-green-500 text-white px-4 py-2 rounded">
+       Credit Card
+      </button>
+      <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded">
+       Cash On Delivery
+      </button>
+     </div>
+     <div class="border border-gray-300 rounded p-4">
+      <h3 class="text-lg font-bold mb-4">
+       Upload files
+      </h3>
+      <div class="border-2 border-dashed border-gray-300 rounded p-8 text-center">
+       <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4">
+       </i>
+       <p class="text-gray-700 mb-2">
+        Drop files here
+       </p>
+       <p class="text-gray-500 mb-4">
+        Supported format: PNG, JPG
+       </p>
+       <p class="text-green-500 cursor-pointer">
+        Browse files
+       </p>
+      </div>
+      <div class="flex justify-between mt-4">
+       <button class="text-gray-500">
+        Cancel
+       </button>
+       <button class="bg-green-500 text-white px-4 py-2 rounded">
+        Upload
+       </button>
+      </div>
+      <p class="text-gray-500 text-sm mt-4">
+       Acceptable formats: PDF, JPG, PNG. Max size: 5MB.
+      </p>
+     </div>
+    </div>
+    <div>
+     <h3 class="text-xl font-bold mb-4">
+      Credit Card Information
+     </h3>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="card-number">
+       Card Number
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2" id="card-number" type="text"/>
+     </div>
+     <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+       <label class="block text-gray-700" for="expiry-date">
+        MM / YY
+       </label>
+       <input class="w-full border border-gray-300 rounded px-3 py-2" id="expiry-date" type="text"/>
+      </div>
+      <div>
+       <label class="block text-gray-700" for="cvv">
+        CVV
+       </label>
+       <input class="w-full border border-gray-300 rounded px-3 py-2" id="cvv" type="text"/>
+      </div>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="card-holder-name">
+       Card Holder Name
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2" id="card-holder-name" type="text"/>
+     </div>
+     <button class="bg-green-500 text-white px-4 py-2 rounded">
+      Pay
+     </button>
+    </div>
+   </div>
+   <div class="mt-8">
+    <button class="bg-green-500 text-white px-4 py-2 rounded">
+     Confirm My Order
+    </button>
+   </div>
+  </main>
+  <footer class="bg-white py-4 mt-8">
+   <div class="container mx-auto px-4 text-center text-gray-500">
+    Made with
+    <i class="fas fa-heart text-red-500">
+    </i>
+    by
+    <span class="text-blue-500">
+     Yisily
+    </span>
+   </div>
+  </footer>
+ </body>
+</html>

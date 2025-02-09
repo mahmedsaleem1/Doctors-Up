@@ -1,0 +1,39 @@
+{
+  "name": "doctorsup",
+  "version": "1.0.0",
+  "description": "DBMS Project for Doctor freelancing Hub",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahmedsaleem1/Doctors-Up.git"
+  },
+  "keywords": [
+    "Doctor",
+    "Patient",
+    "DBMS"
+  ],
+  "author": "Muhammad Ahmed, Shah Iman Ali, Shazeb Alam, Muneeb Asghar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahmedsaleem1/Doctors-Up/issues"
+  },
+  "homepage": "https://github.com/mahmedsaleem1/Doctors-Up#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2"
+  }
+}

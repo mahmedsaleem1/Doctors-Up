@@ -1,0 +1,276 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   HealthConnect
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-50">
+  <header class="bg-white shadow">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+     <img alt="HealthConnect Logo" class="h-10 w-10" height="40" src="https://storage.googleapis.com/a1aa/image/LTY6MQRvkD2vA_GJrFqEL-1kstbSHHIR4x3ubpwgHBk.jpg" width="40"/>
+     <h1 class="text-2xl font-bold ml-2">
+      HealthConnect
+     </h1>
+    </div>
+    <nav class="flex space-x-4">
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Home
+     </a>
+     <a class="text-gray-700 hover:text-green-600 border-b-2 border-green-600" href="#">
+      Search Doctors
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Order Medicine
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Disease Diagnoser
+     </a>
+     <a class="text-gray-700 hover:text-green-600" href="#">
+      Hospitals
+     </a>
+    </nav>
+    <div class="flex space-x-4">
+     <button class="bg-green-600 text-white px-4 py-2 rounded">
+      Sign Up
+     </button>
+     <button class="bg-green-600 text-white px-4 py-2 rounded">
+      Login
+     </button>
+    </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+   <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Doctor Search
+    </h2>
+    <div class="flex items-center mb-4">
+     <input class="border border-gray-300 rounded-l px-4 py-2 w-full" placeholder="Enter specialty..." type="text"/>
+     <button class="bg-green-600 text-white px-4 py-2 rounded-r">
+      Search
+     </button>
+    </div>
+    <div class="flex space-x-4 mb-8">
+     <button class="border border-gray-300 rounded px-4 py-2">
+      Location
+     </button>
+     <button class="border border-gray-300 rounded px-4 py-2">
+      Price
+     </button>
+     <button class="border border-gray-300 rounded px-4 py-2">
+      Ratings
+     </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+     <div class="bg-white shadow rounded p-4">
+      <img alt="Dr. John Doe" class="w-full h-40 object-cover rounded mb-4" height="150" src="https://storage.googleapis.com/a1aa/image/kZyCRzEOijecRDUD7eRycDGgI4JhabPJpbRWyWSCN9w.jpg" width="150"/>
+      <h3 class="text-xl font-bold">
+       Dr. John Doe
+      </h3>
+      <p>
+       Specialty: Cardiology
+      </p>
+      <p>
+       Experience: 15 years
+      </p>
+      <p>
+       Location: Jinnah Avenue
+      </p>
+      <p>
+       Reviews: 50 Reviews
+      </p>
+      <button class="bg-green-600 text-white px-4 py-2 rounded mt-4">
+       View Details
+      </button>
+     </div>
+     <div class="bg-white shadow rounded p-4">
+      <img alt="Dr. Emily Clark" class="w-full h-40 object-cover rounded mb-4" height="150" src="https://storage.googleapis.com/a1aa/image/LfzurRG5txY32d8gy9PL1ZdQCeD18NgIn99YpC_gXjE.jpg" width="150"/>
+      <h3 class="text-xl font-bold">
+       Dr. Emily Clark
+      </h3>
+      <p>
+       Specialty: Neurology
+      </p>
+      <p>
+       Experience: 15 years
+      </p>
+      <p>
+       Location: Jinnah Avenue
+      </p>
+      <p>
+       Reviews: 50 Reviews
+      </p>
+      <button class="bg-green-600 text-white px-4 py-2 rounded mt-4">
+       View Details
+      </button>
+     </div>
+     <div class="bg-white shadow rounded p-4">
+      <img alt="Dr. Michael Lee" class="w-full h-40 object-cover rounded mb-4" height="150" src="https://storage.googleapis.com/a1aa/image/P8-C91IBD-TqiF9WfCgqSNOtYBE5siZBpw4OogkroDA.jpg" width="150"/>
+      <h3 class="text-xl font-bold">
+       Dr. Michael Lee
+      </h3>
+      <p>
+       Specialty: Orthopedics
+      </p>
+      <p>
+       Experience: 15 years
+      </p>
+      <p>
+       Location: Jinnah Avenue
+      </p>
+      <p>
+       Reviews: 50 Reviews
+      </p>
+      <button class="bg-green-600 text-white px-4 py-2 rounded mt-4">
+       View Details
+      </button>
+     </div>
+    </div>
+    <button class="bg-green-600 text-white px-4 py-2 rounded mt-4">
+     Explore More
+    </button>
+   </section>
+   <section class="bg-white shadow rounded p-8 mb-8 flex flex-col md:flex-row">
+    <div class="md:w-1/2">
+     <h2 class="text-3xl font-bold mb-4">
+      Start Your Health Assessment
+     </h2>
+     <p class="mb-4">
+      Discover advanced AI tools designed to provide preliminary health assessments. Get insights into your health status and take proactive steps towards well-being. Click to begin your journey to better health.
+     </p>
+     <button class="bg-green-600 text-white px-4 py-2 rounded">
+      Diagnose My Disease
+     </button>
+    </div>
+    <div class="md:w-1/2">
+     <img alt="Health Assessment Illustration" class="w-full h-full object-cover rounded" height="300" src="https://storage.googleapis.com/a1aa/image/vXBU315BeGHegSDzHnBc_2-hMP2nP1ls9bwFfCPvg1c.jpg" width="400"/>
+    </div>
+   </section>
+   <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Patients Feedback
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+     <div class="bg-white shadow rounded p-4 text-center">
+      <img alt="Emily R." class="w-12 h-12 rounded-full mx-auto mb-2" height="50" src="https://storage.googleapis.com/a1aa/image/hTjUbALzfenbzIL0VcEiQcn-NyyTdbElggSCBLKpyB4.jpg" width="50"/>
+      <p class="font-bold">
+       Emily R.
+      </p>
+      <p class="text-sm text-gray-500">
+       2 days ago
+      </p>
+      <p class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </p>
+      <p class="mt-2">
+       "The AI tool was intuitive and helped me find the perfect doctor. Highly recommended!"
+      </p>
+     </div>
+     <div class="bg-white shadow rounded p-4 text-center">
+      <img alt="John D." class="w-12 h-12 rounded-full mx-auto mb-2" height="50" src="https://storage.googleapis.com/a1aa/image/lVWyXchtAQGsl_blqHaTE67WB4YkdXRHIEeXA1Awggo.jpg" width="50"/>
+      <p class="font-bold">
+       John D.
+      </p>
+      <p class="text-sm text-gray-500">
+       1 week ago
+      </p>
+      <p class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </p>
+      <p class="mt-2">
+       "I was skeptical at first, but the platform exceeded my expectations. Great service!"
+      </p>
+     </div>
+     <div class="bg-white shadow rounded p-4 text-center">
+      <img alt="Sophia W." class="w-12 h-12 rounded-full mx-auto mb-2" height="50" src="https://storage.googleapis.com/a1aa/image/I6mqpzt1PO4VqpbPSr5kg8rikATW3sFdDJpFAZ8nBPg.jpg" width="50"/>
+      <p class="font-bold">
+       Sophia W.
+      </p>
+      <p class="text-sm text-gray-500">
+       3 days ago
+      </p>
+      <p class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </p>
+      <p class="mt-2">
+       "A seamless experience from start to finish. The doctor I found was top-notch!"
+      </p>
+     </div>
+     <div class="bg-white shadow rounded p-4 text-center">
+      <img alt="Michael T." class="w-12 h-12 rounded-full mx-auto mb-2" height="50" src="https://storage.googleapis.com/a1aa/image/6wO1hfkY1g4w-YSOh6Y5nWwvjJ5dJQcn8IpFSi62bpM.jpg" width="50"/>
+      <p class="font-bold">
+       Michael T.
+      </p>
+      <p class="text-sm text-gray-500">
+       5 days ago
+      </p>
+      <p class="text-yellow-500">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </p>
+      <p class="mt-2">
+       "Impressed with the ease of use and the quality of doctors available. Will use again!"
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-white shadow py-4">
+   <div class="container mx-auto px-4 text-center">
+    <p class="text-sm text-gray-500">
+     Made with
+     <span class="text-blue-500">
+      Visily
+     </span>
+    </p>
+   </div>
+  </footer>
+ </body>
+</html>
