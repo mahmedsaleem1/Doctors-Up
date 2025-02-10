@@ -1,15 +1,13 @@
 import { model } from "../config/geminiAI.js";
 
 export const renderDiagnoser = (req, res) => {
-  if (!req.session.messages) req.session.messages = [];
+  const messages = req.session.messages ? [...req.session.messages] : []; // Copy messages
 
-  const messages = [...req.session.messages]; // Copy messages
+  // Clear session messages BEFORE rendering
+  req.session.messages = [];
 
   res.render("aiDiagnoser", { messages });
-
-  req.session.messages = []; // Clear AFTER rendering
 };
-
 
 export const handleUserInput = async (req, res) => {
   const userInput = req.body.userInput;
@@ -19,7 +17,8 @@ export const handleUserInput = async (req, res) => {
 
   try {
     const result = await model.generateContent(userInput);
-    const aiResponse = result.response.text();
+    let aiResponse = result.response.text();
+    aiResponse = aiResponse.replace(/[*_`~]/g, "");
 
     req.session.messages.push({ type: "ai", text: aiResponse });
 

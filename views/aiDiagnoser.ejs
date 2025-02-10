@@ -50,6 +50,23 @@
             font-style: italic;
             color: gray;
         }
+        .user-guidance {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .user-guidance h2 {
+            margin-top: 0;
+        }
+
+        .user-guidance ul {
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }
+
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -99,13 +116,15 @@
     </form>
     
     <section class="mt-8">
-        <h2 class="text-2xl font-bold mb-4">User  Guidance</h2>
-        <p class="mb-4">How to communicate with the AI Doctor effectively:</p>
-        <ul class="list-disc list-inside space-y-2">
-            <li class="flex items-center"><input checked="" class="mr-2" type="checkbox"/><span>Use clear and concise language</span></li>
-            <li class="flex items-center"><input class="mr-2" type="checkbox"/><span>Ask specific health-related questions</span></li>
-            <li class="flex items-center"><input class="mr-2" type="checkbox"/><span>Provide relevant symptoms and medical history</span></li>
-        </ul>
+        <div class="user-guidance">
+            <h2>User Guidance</h2>
+            <p><strong>How to communicate with the AI Doctor effectively:</strong></p>
+            <ul>
+              <li>Use simple and clear language.</li>
+              <li>Be specific when asking health-related questions.</li>
+              <li>Share relevant symptoms and basic medical history.</li>
+            </ul>
+          </div>
         <p class="mt-4">Topics AI Doctor can assist with:</p>
         <div class="flex space-x-2 mt-2">
             <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">General Health</span>
