@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>HealthConnect - AI Doctor Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .chat-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 400px;
+            overflow-y: auto;
+            background-color: #f9fafb;
+        }
+        .user-message {
+            background-color: #d1e7dd; /* Light green */
+            text-align: right;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+            max-width: 70%;
+        }
+        .ai-message {
+            background-color: #f8d7da; /* Light red */
+            text-align: left;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+            max-width: 70%;
+        }
+        .message-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .message-container img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+        .loading {
+            display: none;
+            font-style: italic;
+            color: gray;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+<header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img alt="HealthConnect logo" class="h-10 w-10" height="40" src="https://storage.googleapis.com/a1aa/image/fXd-WBXYa_7_UaEuvzOyGm-Pc9h_AmkPCyhaVhmv6Pc.jpg" width="40"/>
+            <span class="ml-2 text-2xl font-bold">HealthConnect</span>
+        </div>
+        <nav class="flex space-x-6">
+            <a class="text-gray-600 hover:text-gray-800" href="#">Home</a>
+            <a class="text-gray-600 hover:text-gray-800" href="#">Search Doctors</a>
+            <a class="text-green-500 border-b-2 border-green-500" href="#">Disease Diagnoser</a>
+            <a class="text-gray-600 hover:text-gray-800" href="#">Order Medicine</a>
+            <a class="text-gray-600 hover:text-gray-800" href="#">Hospitals</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+            <i class="fas fa-bell text-gray-600"></i>
+            <img alt="User  profile picture" class="h-10 w-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/Teq41ozGO2AAo5kfIX2xFhQeN89vVZ0BBM96dWDJCyQ.jpg" width="40"/>
+        </div>
+    </div>
+</header>
+<main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">AI Doctor Chat</h1>
+    
+    <div id="chat" class="chat-container">
+        <!-- Chat messages will be displayed here -->
+        <% if (messages.length > 0) { %>
+            <% messages.forEach(function(message) { %>
+                <div class="message-container <%= message.type === 'user' ? 'text-right' : 'text-left' %>">
+                    <img src="<%= message.type === 'user' ? 'https://via.placeholder.com/40' : 'https://via.placeholder.com/40/ffcccb/000000?text=AI' %>" alt="<%= message.type === 'user' ? 'User  ' : 'AI' %>"/>
+                    <div class="<%= message.type === 'user' ? 'user-message' : 'ai-message' %>">
+                        <%= message.text %>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+
+    <div class="loading" id="loading">Your AI Doctor is typing...</div>
+
+    <form action="/diagnoser/submit" method="POST" class="mt-4" onsubmit="showLoading()">
+        <div class="mt-8">
+            <input class="w-full p-4 border rounded-lg" placeholder="Type a message" type="text" name="userInput" required/>
+        </div>
+        <button type="submit" class="mt-2 bg-blue-500 text-white p-2 rounded">Send</button>
+    </form>
+    
+    <section class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">User  Guidance</h2>
+        <p class="mb-4">How to communicate with the AI Doctor effectively:</p>
+        <ul class="list-disc list-inside space-y-2">
+            <li class="flex items-center"><input checked="" class="mr-2" type="checkbox"/><span>Use clear and concise language</span></li>
+            <li class="flex items-center"><input class="mr-2" type="checkbox"/><span>Ask specific health-related questions</span></li>
+            <li class="flex items-center"><input class="mr-2" type="checkbox"/><span>Provide relevant symptoms and medical history</span></li>
+        </ul>
+        <p class="mt-4">Topics AI Doctor can assist with:</p>
+        <div class="flex space-x-2 mt-2">
+            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">General Health</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Nutrition</span>
+            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">Mental Health</span>
+            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full">Medication Guidance</span>
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Exercise Tips</span>
+          </div>
+      </section>
+  </main>
+  <footer class="bg-white py-4">
+      <div class="container mx-auto px-4">
+          <p class="text-center text-gray-600">&copy; 2021 HealthConnect. All rights reserved.</p>
+      </div>
+  </footer>
+  
+  <script>
+      function showLoading() {
+          document.getElementById('loading').style.display = 'block'; // Show loading message
+      }
+  
+      // Optional: Hide loading message after a short delay (e.g., 2 seconds)
+      window.onload = function() {
+          document.getElementById('loading').style.display = 'none'; // Hide loading message on page load
+      };
+  </script>
+  </body>
+  </html>
