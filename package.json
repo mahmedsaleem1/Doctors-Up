@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "db:init": "node src/models/initDB.models.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "repository": {
@@ -34,7 +35,9 @@
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
-    "openai": "^4.83.0"
+    "openai": "^4.83.0",
+    "pg": "^8.13.3",
+    "pg-promise": "^11.10.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
