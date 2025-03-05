@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { prisma } from '../config/prismaDb.js';
 import {ApiError} from '../utils/apiError.js';
 import {asyncHandler} from '../utils/asyncHandler.js';
 

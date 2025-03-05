@@ -147,8 +147,6 @@ export const loginDoctor = asyncHandler(async (req, res, next) => {
 });
 
 export const logoutDoctor = asyncHandler(async (req, res, next) => {
-    console.log("Decoded Token:", req.user);
-
     if (!req.user.doctor_id) {
         return res.status(401).json({ message: "Invalid Token" });
     }
@@ -162,3 +160,59 @@ export const logoutDoctor = asyncHandler(async (req, res, next) => {
     res.clearCookie("refreshToken", { httpOnly: true });
     res.status(200).json({ message: "Doctor Logged Out Successfully" });
 });
+
+export const refreshAccessToken = asyncHandler(async (req, res) => {
+    try {
+        const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
+
+        if (!incomingRefreshToken) {
+            throw new ApiError(401, "Unauthorized Request");
+        }
+
+        const decodedToken = jwt.verify(incomingRefreshToken, process.env.DOCTOR_REFRESH_TOKEN_SECRET);
+
+        if (!decodedToken) {
+            throw new ApiError(402, "Invalid Token");
+        }
+
+        const bearerDoctor = await prisma.doctors.findUnique({
+            where: { doctor_id: decodedToken.doctor_id }
+        });
+
+        if (!bearerDoctor) {
+            throw new ApiError(404, "Doctor with the corresponding Refresh Token is not Found");
+        }
+
+        if (incomingRefreshToken !== bearerDoctor.refreshToken) {
+            throw new ApiError(400, "Refresh Token is expired or Used");
+        }
+
+        const options = {
+            httpOnly: true,
+            secure: true
+        };
+
+        const generatedAccessToken = generateAccessTokenDoctor(bearerDoctor);
+        const generatedRefreshToken = generateRefreshTokenDoctor(bearerDoctor);
+
+        await prisma.doctors.update({
+            where: { doctor_id: bearerDoctor.doctor_id },
+            data: { refreshToken: generatedRefreshToken }
+        });
+
+        res
+            .status(200)
+            .cookie("accessToken", generatedAccessToken, options)
+            .cookie("refreshToken", generatedRefreshToken, options)
+            .json(
+                new ApiResponse(
+                    200,
+                    { generatedAccessToken, generatedRefreshToken },
+                    "Access Token Refreshed"
+                )
+            );
+    } catch (error) {
+        throw new ApiError(403, "Access Token failed to be Refreshed", error);
+    }
+});
+
