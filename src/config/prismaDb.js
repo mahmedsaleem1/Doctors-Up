@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-export default prisma;
+import { PrismaClient } from '@prisma/client';
+export const prisma = new PrismaClient();
 
 // const createDoctor = async () => {
 //   const doctor = await prisma.doctors.create({
