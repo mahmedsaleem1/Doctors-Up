@@ -1,5 +1,9 @@
+-- Enable UUID Extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Doctors Table with UUID
 CREATE TABLE "Doctors"(
-    "doctor_id" BIGSERIAL PRIMARY KEY,
+    "doctor_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "full_name" VARCHAR(255) NOT NULL,
     "specialty" VARCHAR(255) NOT NULL,
     "qualification" VARCHAR(255) NOT NULL,
@@ -17,8 +21,9 @@ CREATE TABLE "Doctors"(
     "refreshToken" VARCHAR(255)
 );
 
+-- Patients Table with UUID
 CREATE TABLE "Patient"(
-    "patient_id" BIGSERIAL PRIMARY KEY,
+    "patient_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "full_name" VARCHAR(255) NOT NULL,
     "age" SMALLINT NOT NULL CHECK ("age" > 0),
     "gender" VARCHAR(50) CHECK ("gender" IN('Male', 'Female', 'Other')) NOT NULL,
@@ -31,10 +36,11 @@ CREATE TABLE "Patient"(
     "refreshToken" VARCHAR(255)
 );
 
+-- Appointments Table with UUID
 CREATE TABLE "Appointments"(
-    "appointment_id" BIGSERIAL PRIMARY KEY,
-    "doctor_id" BIGINT NOT NULL,
-    "patient_id" BIGINT NOT NULL,
+    "appointment_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "doctor_id" UUID NOT NULL,
+    "patient_id" UUID NOT NULL,
     "appointment_date" DATE NOT NULL,
     "appointment_time" TIME NOT NULL,
     "status" VARCHAR(50) CHECK ("status" IN('Pending', 'Confirmed', 'Cancelled')) NOT NULL,
@@ -44,9 +50,10 @@ CREATE TABLE "Appointments"(
     FOREIGN KEY("patient_id") REFERENCES "Patient"("patient_id") ON DELETE CASCADE
 );
 
+-- Payments Table with UUID
 CREATE TABLE "Payments"(
-    "payment_id" BIGSERIAL PRIMARY KEY,
-    "appointment_id" BIGINT NOT NULL,
+    "payment_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "appointment_id" UUID NOT NULL,
     "amount" SMALLINT NOT NULL CHECK ("amount" > 0),
     "payment_method" VARCHAR(50) CHECK ("payment_method" IN('Card', 'Cash', 'Online')) NOT NULL,
     "payment_date" DATE NOT NULL,
@@ -54,9 +61,10 @@ CREATE TABLE "Payments"(
     FOREIGN KEY("appointment_id") REFERENCES "Appointments"("appointment_id") ON DELETE CASCADE
 );
 
+-- Reviews Table with UUID
 CREATE TABLE "Reviews"(
-    "review_id" BIGSERIAL PRIMARY KEY,
-    "appointment_id" BIGINT NOT NULL UNIQUE,
+    "review_id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "appointment_id" UUID NOT NULL UNIQUE,
     "rating" INTEGER NOT NULL CHECK ("rating" BETWEEN 1 AND 5),
     "comment" TEXT,
     "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

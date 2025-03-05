@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctors {
+  doctor_id          String    @id @default(uuid())
+  full_name          String
+  specialty          String
+  qualification      String
+  experience_years   Int
+  profile_picture    String?
+  about             String?
+  availability_status String
+  consultation_fee   Int
+  video_intro       String?
+  email             String   @unique
+  password          String
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+  accessToken       String?
+  refreshToken      String?
+
+  Appointments      Appointments[]
+}
+
+model Patient {
+  patient_id     String    @id @default(uuid())
+  full_name     String
+  age           Int
+  gender        String
+  contact_number String
+  email         String   @unique
+  password      String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  accessToken   String?
+  refreshToken  String?
+
+  Appointments  Appointments[]
+}
+
+model Appointments {
+  appointment_id   String     @id @default(uuid())
+  appointment_date DateTime
+  appointment_time DateTime
+  status          String
+  payment_status  String
+  created_at      DateTime @default(now())
+
+  doctor_id       String
+  Doctors        Doctors    @relation(fields: [doctor_id], references: [doctor_id], onDelete: Cascade)
+  patient_id     String
+  Patient       Patient     @relation(fields: [patient_id], references: [patient_id], onDelete: Cascade)
+  Payments      Payments?
+  Reviews       Reviews?
+}
+
+model Payments {
+  payment_id      String    @id @default(uuid())
+  amount         Int
+  payment_method String
+  payment_date   DateTime
+  payment_status String
+
+  appointment_id String   @unique
+  Appointment   Appointments @relation(fields: [appointment_id], references: [appointment_id], onDelete: Cascade)
+}
+
+model Reviews {
+  review_id       String    @id @default(uuid())
+  rating         Int
+  comment        String?
+  created_at     DateTime @default(now())
+
+  appointment_id String   @unique
+  Appointment   Appointments @relation(fields: [appointment_id], references: [appointment_id], onDelete: Cascade)
+}
