@@ -1,9 +1,8 @@
 import express from "express";
-import { renderDiagnoser, handleUserInput } from "../controllers/aiDoctor.controller.js";
+import { generateAIResponse } from "../controllers/aiDoctor.controller.js";
 
 const router = express.Router();
 
-router.get("/", renderDiagnoser);
-router.post("/submit", handleUserInput);
+router.post("/", generateAIResponse);
 
 export default router;

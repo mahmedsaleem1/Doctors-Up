@@ -1,31 +1,20 @@
 import { model } from "../config/geminiAI.js";
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { ApiError } from '../utils/apiError.js';
+import { ApiResponse } from '../utils/apiResponse.js';
 
-export const renderDiagnoser = (req, res) => {
-  const messages = req.session.messages ? [...req.session.messages] : []; // Copy messages
+export const generateAIResponse = asyncHandler(async (req, res) => {
+  const { message } = req.body;
 
-  // Clear session messages BEFORE rendering
-  req.session.messages = [];
-
-  res.render("aiDiagnoser", { messages });
-};
-
-export const handleUserInput = async (req, res) => {
-  const userInput = req.body.userInput;
-  if (!req.session.messages) req.session.messages = [];
-
-  req.session.messages.push({ type: "user", text: userInput });
-
-  try {
-    const result = await model.generateContent(userInput);
-    let aiResponse = result.response.text();
-    aiResponse = aiResponse.replace(/[*_`~]/g, "");
-
-    req.session.messages.push({ type: "ai", text: aiResponse });
-
-    res.redirect("/diagnoser"); // Redirect back to the chat page
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error generating response from AI.");
+  if (!message) {
+    throw new ApiError(400, "Message is required");
   }
-};
 
+  const result = await model.generateContent(message);
+  let aiResponse = result.response.text();
+  aiResponse = aiResponse.replace(/[*_`~]/g, "");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, aiResponse, "AI Response Generated Successfully"));
+});
