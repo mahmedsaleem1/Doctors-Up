@@ -266,5 +266,73 @@ export const verifyOtp = asyncHandler(async (req, res, next) => {
     return res.status(200).json(new ApiResponse(200, "Password Updated Successfully"));
 });
 
+export const getCurrentDoctor = asyncHandler(async (req, res) => {    
+    try {
+        const doctor = await prisma.doctors.findUnique({
+            where: { doctor_id: req.user.doctor_id }, // yahan doctor_id use karo
+            select: {
+                doctor_id: true,
+                full_name: true,
+                email: true,
+                specialty: true,
+                qualification: true,
+                experience_years: true,
+                about: true,
+                availability_status: true,
+                consultation_fee: true
+            }
+        });
+
+        if (!doctor) {
+            throw new ApiError(404, "Doctor Not Found");
+        }
+
+        return res.status(200).json(
+            new ApiResponse(200, doctor, "Doctor Fetched Successfully")
+        );
+
+    } catch (error) {
+        throw new ApiError(500, error);
+    }
+});
+
+
+export const updateDoctorInfo = asyncHandler(async (req, res) => {
+    const {
+        full_name,
+        specialty,
+        qualification,
+        experience_years,
+        about,
+        availability_status,
+        consultation_fee
+    } = req.body;
+
+    const updatedDoctor = await prisma.doctors.update({
+        where: { doctor_id: req.user.doctor_id },
+        data: {
+            full_name: full_name || undefined,
+            specialty: specialty || undefined,
+            qualification: qualification || undefined,
+            experience_years: experience_years || undefined,
+            about: about || undefined,
+            availability_status: availability_status || undefined,
+            consultation_fee: consultation_fee || undefined
+        },
+        select: {
+            doctor_id: true,
+            full_name: true,
+            specialty: true,
+            qualification: true,
+            experience_years: true,
+            about: true,
+            availability_status: true,
+            consultation_fee: true
+        }
+    });
+
+    return res.status(200).json(new ApiResponse(200, updatedDoctor, "Doctor Info Updated Successfully"));
+});
+
 
 
