@@ -81,3 +81,14 @@ model Reviews {
   appointment_id String   @unique
   Appointment   Appointments @relation(fields: [appointment_id], references: [appointment_id], onDelete: Cascade)
 }
+
+model Hospital {
+  hospital_id     Int      @id @default(autoincrement())
+  name            String
+  city            String
+  area            String
+  availableDoctors Int
+  address         String
+  contact         String
+  createdAt       DateTime @default(now())
+}

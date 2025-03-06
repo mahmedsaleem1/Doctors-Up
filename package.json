@@ -43,6 +43,7 @@
     "prisma": "^6.4.1"
   },
   "devDependencies": {
+    "csv-parser": "^3.2.0",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2"
   }
