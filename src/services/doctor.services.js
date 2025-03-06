@@ -7,7 +7,7 @@ const hashDoctorPassword = async (password) => {
 };
 
 const isPasswordValid = async (password, passwordFromModel) => {
-    return await bcrypt.compare(password, passwordFromModel);
+    return await bcrypt.compare(String(password), String(passwordFromModel.password));
 }
 
 const generateAccessTokenDoctor = (doctor) => {

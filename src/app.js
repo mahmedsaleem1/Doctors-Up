@@ -2,6 +2,7 @@ import express from "express";
 import sessionConfig from "./config/sessionsConfig.js";
 import diagnoserRoutes from "./routes/aiDiagnoser.route.js";
 import doctorRoutes from "./routes/doctor.route.js";
+import patientRoutes from "./routes/patient.route.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -18,5 +19,7 @@ app.use(cookieParser())
 app.get("/", (req, res) => res.render("landingPage"));
 app.use("/api/v1/diagnoser", diagnoserRoutes);
 app.use("/api/v1/doctor", doctorRoutes);
+app.use("/api/v1/patient", patientRoutes);
+
 
 export default app;
