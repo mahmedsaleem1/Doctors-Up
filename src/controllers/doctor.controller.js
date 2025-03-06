@@ -7,6 +7,7 @@ import { hashDoctorPassword,
         generateAccessTokenDoctor,
         generateRefreshTokenDoctor } from '../services/doctor.services.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js'
+import { transporter } from '../utils/nodeMailer.js';
 
 export const generateAccessAndRefreshToken = async (doctor) => {
     try {
@@ -28,7 +29,7 @@ export const generateAccessAndRefreshToken = async (doctor) => {
     }
 };
 
-export const registerDoctor = asyncHandler(async (req, res, next) => {
+export const registerDoctor = asyncHandler(async (req, res) => {
     const { fullname, specialty, qualification, experience,
         about, availability, fee, email, password } = req.body;
 
@@ -146,7 +147,7 @@ export const loginDoctor = asyncHandler(async (req, res, next) => {
         .json(new ApiResponse(200, doctorToBeSent,"Doctor Logged In Successfully"));
 });
 
-export const logoutDoctor = asyncHandler(async (req, res, next) => {
+export const logoutDoctor = asyncHandler(async (req, res) => {
     if (!req.user.doctor_id) {
         return res.status(401).json({ message: "Invalid Token" });
     }
@@ -215,4 +216,55 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
         throw new ApiError(403, "Access Token failed to be Refreshed", error);
     }
 });
+
+let otpStore = {};
+
+export const sendOtp = asyncHandler(async (req, res, next) => {
+    const { email } = req.body;
+
+    if (!email) {
+        throw new ApiError(400, "Email is Required");
+    }
+
+    const doctor = await prisma.doctors.findUnique({
+        where: { email }
+    });
+
+    if (!doctor) {
+        throw new ApiError(404, "Doctor Not Found");
+    }
+
+    const otp = Math.floor(10000 + Math.random() * 90000);
+    otpStore[email] = otp;
+
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Request for Password Reset',
+        text: `Your OTP is ${otp} Kindly choose a new password`
+    });
+
+    return res.status(200).json(new ApiResponse(200, "OTP Sent Successfully"));
+});
+
+export const verifyOtp = asyncHandler(async (req, res, next) => {
+    const { email, userGivenOtp, newPassword } = req.body;
+
+    if (otpStore[email] != userGivenOtp) {
+        throw new ApiError(400, "Invalid OTP");
+    }
+
+    const hashedPassword = await hashDoctorPassword(newPassword);
+
+    await prisma.doctors.update({
+        where: { email },
+        data: { password: hashedPassword }
+    });
+
+    delete otpStore[email];
+
+    return res.status(200).json(new ApiResponse(200, "Password Updated Successfully"));
+});
+
+
 

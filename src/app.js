@@ -4,7 +4,6 @@ import diagnoserRoutes from "./routes/aiDiagnoser.route.js";
 import doctorRoutes from "./routes/doctor.route.js";
 import cookieParser from "cookie-parser";
 
-
 const app = express();
 
 // Middleware

@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { registerDoctor, loginDoctor, logoutDoctor } from '../controllers/doctor.controller.js'
-import { upload } from "../middlewares/multer.middleware.js"
-import { authDoctor } from "../middlewares/auth.middleware.js"
+import { registerDoctor, loginDoctor, logoutDoctor, sendOtp, verifyOtp } from '../controllers/doctor.controller.js';
+import { upload } from "../middlewares/multer.middleware.js";
+import { authDoctor } from "../middlewares/auth.middleware.js";
 
-const router = Router()
+const router = Router();
 
 router.route("/register").post(upload.fields([
     {
@@ -14,9 +14,12 @@ router.route("/register").post(upload.fields([
         name : "video_intro",
         maxCount : 1
     }
-]), registerDoctor)
+]), registerDoctor);
 
-router.route("/login").post(loginDoctor)
-router.route("/logout").post(authDoctor, logoutDoctor)
+router.route("/login").post(loginDoctor);
+router.route("/logout").post(authDoctor, logoutDoctor);
 
-export default router
+router.route("/send-otp").post(sendOtp); // Step 1: Email bhejo aur OTP pao
+router.route("/reset-password").post(verifyOtp); 
+
+export default router;
