@@ -21,9 +21,10 @@ DocPassport.use("doctor-google", new GoogleStrategy({
         let doctor = await prisma.doctors.findUnique({ where: { email } });
         let unregsiteredDoctor = false;
         // If doctor does not exist, create a new one
+        if (!doctor || doctor.specialty === "null") {
+          unregsiteredDoctor = true;
+        }
         if (!doctor) {
-            unregsiteredDoctor = true;
-
             doctor = await prisma.doctors.create({
               data: {
                 email,

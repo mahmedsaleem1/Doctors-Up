@@ -1,6 +1,5 @@
 import express from "express";
 import passport from "../config/passportDoctor.js"; // Doctor Passport
-import {ApiResponse} from "../utils/apiResponse.js";
 
 const router = express.Router();
 
@@ -17,7 +16,10 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    res.json(new ApiResponse(200, "Doctor authenticated successfully", req.user));
+    if (req.user.UnRegistered){
+      req.session.email = req.user.email;
+      res.redirect("/api/v1/doctor/updateOAuthDoctor");
+    }
   }
 );
 

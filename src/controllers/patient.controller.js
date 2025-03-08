@@ -308,5 +308,47 @@ export const updatePatientInfo = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, updatedPatient, "Patient Info Updated Successfully"));
 });
 
+export const registerOAuthPatient = asyncHandler(async (req, res) => {
+    const { fullname, age, gender, contact, password } = req.body;
+
+    const email = req.session.email
+
+    if (!fullname || !age || !gender || !contact || !password) {
+            throw new ApiError(400, "All Fields are Required")
+    }
+
+    let profilePicLocalPath;
+
+    if (!req.files.profile_picture) {
+        throw new ApiError(400, "Profile Picture is Required")
+        }
+    
+    profilePicLocalPath = req.files.profile_picture[0].path;
+
+    const profilePicCloudinary = await uploadOnCloudinary(profilePicLocalPath);
+
+    if(!profilePicCloudinary) {
+        throw new ApiError(500, "Profile Picture Upload Failed")
+    }
+
+    const createdPatient = await prisma.patient.update({
+        where : {email: email},
+        data: {
+            full_name: fullname, 
+            age : parseInt(age),
+            gender,
+            contact_number: contact, 
+            email,
+            password: await hashPatientPassword(password),
+            profile_picture: profilePicCloudinary.url,
+        }
+    });
+
+    if (!createdPatient) {
+        throw new ApiError(500, "Pateint Registration Failed")
+    }
+
+    return res.status(201).json(new ApiResponse(201, "Patient Registered Successfully"));
+});
 
 

@@ -8,6 +8,7 @@ import { hashDoctorPassword,
         generateRefreshTokenDoctor } from '../services/doctor.services.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js'
 import { transporter } from '../utils/nodeMailer.js';
+import e from 'express';
 
 export const generateAccessAndRefreshToken = async (doctor) => {
     try {
@@ -307,7 +308,7 @@ export const updateDoctorInfo = asyncHandler(async (req, res) => {
         availability_status,
         consultation_fee
     } = req.body;
-
+    
     const updatedDoctor = await prisma.doctors.update({
         where: { doctor_id: req.user.doctor_id },
         data: {
@@ -333,6 +334,66 @@ export const updateDoctorInfo = asyncHandler(async (req, res) => {
 
     return res.status(200).json(new ApiResponse(200, updatedDoctor, "Doctor Info Updated Successfully"));
 });
+
+
+
+export const registerOAuthDoctor = asyncHandler(async (req, res) => {
+    const { fullname, specialty, qualification, experience,
+        about, availability, fee, password } = req.body;
+
+    const email = req.session.email;
+
+    console.log(email);
+    
+
+    if (!fullname || !specialty || !qualification || !experience 
+        || !about || !availability || !fee || !password) {
+            throw new ApiError(400, "All Fields are Required")
+    }
+
+    let profilePicLocalPath, videoLocalPath;
+
+    if (!req.files.profile_picture || !req.files.video_intro) {
+        throw new ApiError(400, "Profile Picture and Video Intro are Required")
+        }
+    
+    profilePicLocalPath = req.files.profile_picture[0].path;
+    videoLocalPath = req.files.video_intro[0].path;
+
+    const profilePicCloudinary = await uploadOnCloudinary(profilePicLocalPath);
+
+    if(!profilePicCloudinary) {
+        throw new ApiError(500, "Profile Picture Upload Failed")
+    }
+
+    const videoCloudinary = await uploadOnCloudinary(videoLocalPath);
+
+    if(!videoCloudinary) {
+        throw new ApiError(500, "Video Upload Failed")
+    }
+
+    const createdDoctor = await prisma.doctors.update({
+        where: { email: email },
+        data: {
+            full_name: fullname, // ✅ Yeh ab sahi hai
+            specialty,
+            qualification,
+            experience_years: parseInt(experience), // ✅ Yeh bhi sahi
+            about,
+            availability_status: availability, // ✅ Yeh bhi sahi
+            consultation_fee: parseInt(fee), // ✅ Yeh bhi sahi
+            password: await hashDoctorPassword(password),
+            profile_picture: profilePicCloudinary.url,
+            video_intro: videoCloudinary.url
+        }
+    });
+
+    if (!createdDoctor) {
+        throw new ApiError(500, "Doctor Registration Failed")
+    }
+
+    return res.status(201).json(new ApiResponse(201, "Doctor Info Added Successfully"));
+})
 
 
 

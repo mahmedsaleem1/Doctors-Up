@@ -20,9 +20,13 @@ PatientPassport.use("patient-google", new GoogleStrategy({
 
         let patient = await prisma.patient.findUnique({ where: { email } });
         let unregisteredPatient = false;
+
+        if (!patient || patient.age === 0) {
+            unregisteredPatient = true;
+        }
+
         // If patient does not exist, create a new one
         if (!patient) {
-            unregisteredPatient = true;
             patient = await prisma.patient.create({
                 data: {
                     email,

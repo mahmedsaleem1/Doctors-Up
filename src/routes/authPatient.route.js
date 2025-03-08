@@ -1,6 +1,5 @@
 import express from "express";
 import passport from "../config/passportPatient.js"; // Patient Passport
-import {ApiResponse} from "../utils/apiResponse.js";
 
 const router = express.Router();
 import dotenv from "dotenv";
@@ -25,7 +24,10 @@ router.get(
     },
     passport.authenticate("patient-google", { failureRedirect: "/login" }),
     (req, res) => {
-      res.json(new ApiResponse(200, "Patient authenticated successfully", req.user));
+      if (req.user.UnRegistered){
+        req.session.email = req.user.email;
+        res.redirect("/api/v1/patient/updateOAuthPatient");
+      }
     }
   );
 
