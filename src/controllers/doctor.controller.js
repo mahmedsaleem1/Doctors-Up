@@ -8,7 +8,6 @@ import { hashDoctorPassword,
         generateRefreshTokenDoctor } from '../services/doctor.services.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js'
 import { transporter } from '../utils/nodeMailer.js';
-import e from 'express';
 
 export const generateAccessAndRefreshToken = async (doctor) => {
     try {

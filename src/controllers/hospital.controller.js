@@ -1,5 +1,4 @@
 import { importHospitals } from "../services/hospital.services.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 
 export const importHospitalData = async (req, res, next) => {
