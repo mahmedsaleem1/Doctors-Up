@@ -13,6 +13,7 @@ import './config/passportPatient.js';
 import authDoctorRoutes from './routes/authDoctor.route.js';
 import authPatientRoutes from './routes/authPatient.route.js';
 import appointmentRoute from "./routes/appointment.route.js";
+import reviewRoute from "./routes/review.route.js";
 
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use("/api/v1/hospital", hospitalRoutes);
 app.use("/auth/doctor", authDoctorRoutes);
 app.use("/auth/patient", authPatientRoutes);
 app.use("/api/v1/appointment", appointmentRoute)
+app.use("/api/v1/review", reviewRoute)
 
 
 export default app;
