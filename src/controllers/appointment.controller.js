@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from '../utils/apiResponse.js';
+import { transporter } from "../utils/nodeMailer.js";
 
 const prisma = new PrismaClient();
 
@@ -53,6 +54,23 @@ export const bookAppointment = asyncHandler(async (req, res) => {
             status: "pending",
             payment_status: "unpaid",
         },
+    });
+
+    const patient = await prisma.patient.findUnique({
+        where: { patient_id },
+    });
+
+    //send email to doctor email through transporter about the appointment
+    const mailOptions = {
+        from: process.env.EMAIL,
+        to: doctor.email,
+        subject: 'New Appointment',
+        text: `You have a new appointment with ${patient.full_name} on ${req.body.appointment_date} at ${req.body.appointment_time}`
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            res.status(500).json(new ApiResponse(500, "Email not sent", error));
+        }
     });
 
     res
