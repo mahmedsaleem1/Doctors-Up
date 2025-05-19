@@ -11,6 +11,7 @@ import { transporter } from '../utils/nodeMailer.js';
 
 export const generateAccessAndRefreshToken = async (doctor) => {
     try {
+        const name = "Ahmed";
         const genAccessToken = generateAccessTokenDoctor(doctor);
         const genRefreshToken = generateRefreshTokenDoctor(doctor);
                 
